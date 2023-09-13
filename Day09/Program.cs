@@ -1,6 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Day09;
-
 DayClass day = new DayClass();
 
 var watch = new System.Diagnostics.Stopwatch();
