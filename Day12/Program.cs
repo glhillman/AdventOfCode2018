@@ -91,7 +91,7 @@ internal class DayClass
         } while (firstPot != null);
     }
 
-    public void Part1()
+    public void PartY()
     {
 
         string input = _start;
@@ -129,6 +129,43 @@ internal class DayClass
         Console.WriteLine("Part1: {0}", sum);
     }
 
+    public void Part1()
+    {
+        string input = _start;
+        //Console.WriteLine(input);
+        StringBuilder sb = new();
+        int offset = 1;
+        for (int i = 0; i < 20; i++)
+        {
+            input = "..." + input + "...";
+            sb.Clear();
+            for (int x = 2; x < input.Length - 2; x++)
+            {
+                string sub = input.Substring(x-2, 5);
+                if (_patterns.ContainsKey(sub))
+                {
+                    sb.Append(_patterns[sub]);
+                }
+                else
+                {
+                    sb.Append(".");
+                }
+            }
+            input = sb.ToString();
+            DumpLine(input, offset);
+            offset++;
+        }
+        offset--;
+        int sum = 0;
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            sum += input[i] == '#' ? i - offset : 0;
+        }
+
+        Console.WriteLine("Part1: {0}", sum);
+    }
+    
     private void DumpLine(string line, int offset)
     {
         Console.WriteLine(line);
@@ -150,7 +187,7 @@ internal class DayClass
 
     private void LoadData()
     {
-        string inputFile = AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\input.txt";
+        string inputFile = AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\test.txt";
 
         if (File.Exists(inputFile))
         {
